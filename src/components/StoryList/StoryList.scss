@@ -1,0 +1,15 @@
+.storyList {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 32px;
+
+  @media (max-width: 1024px) {
+    margin: 16px;
+  }
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
