@@ -8,6 +8,8 @@ I have added a small Jest test to check if the application is rendered.
 
 I am showing 10 randomly picked Hacker Rank stories from top 500. The randomness might not have been a strict requirement, but I thought it would be a fun touch, instead of picking first 10 stories. I am not using a blogal state for this project, since there was no need for it. Normally I would add ReactContext if I needed a shared state throught the app. Also often ReactQuery substitutes the need for global state for fetched data.
 
+NOTE: I have noticed I've missed a requirement to sort the stories by score. Since it seems to be an important one, I have added it on a separate commit. It took me around an hour to come up with a solution and adjust the rest of the app. I had to move the fetching of the story ids one level up to avoid infinite rerendering. Since it has been submited after the dealine, you are welcome to disregard it.
+
 ## Available Scripts
 
 In the project directory, you can run:

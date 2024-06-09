@@ -1,24 +1,18 @@
-import { useGetStoryIds } from "../../api/queries";
-import { filterRandomItems } from "../../utilities/utilities";
+import { useGetStories } from "../../api/queries";
 import Story from "../Story/Story";
+import { StoryData } from "../../types/StoryData";
+import { sortByScore } from "../../utilities/utilities";
 import "./StoryList.scss";
 
-const StoryList = () => {
-  const { data, isError, isLoading } = useGetStoryIds();
-  const filteredStoryIds = data && filterRandomItems(data, 10);
+const StoryList = ({ storyIds }: { storyIds: number[] }) => {
+  const stories = useGetStories(storyIds);
 
-  if (isError) {
-    return <div>Error while getting stories, try reloading the page</div>;
-  }
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  const sortedStories = sortByScore(stories);
 
   return (
     <div className="storyList">
-      {filteredStoryIds.map((storyId: number) => {
-        return <Story key={storyId} id={storyId} />;
+      {sortedStories.map((story: StoryData) => {
+        return story.data && <Story key={story.data.id} story={story.data} />;
       })}
     </div>
   );

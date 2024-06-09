@@ -19,8 +19,13 @@
 
     .title {
       font-size: 16px;
-      font-weight: bold;
+      font-weight: 800;
       padding-bottom: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
     }
   }
 

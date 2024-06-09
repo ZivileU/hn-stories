@@ -1,3 +1,5 @@
+import { StoryData } from "../types/StoryData";
+
 export const filterRandomItems = (data: number[], maxItems: number) => {
   let items: number[] = [];
 
@@ -9,3 +11,9 @@ export const filterRandomItems = (data: number[], maxItems: number) => {
 
   return items;
 };
+
+export const sortByScore = (stories: StoryData[]) =>
+  stories &&
+  [...stories].sort((a: StoryData, b: StoryData) => {
+    return b.data?.score - a.data?.score;
+  });

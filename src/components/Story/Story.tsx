@@ -1,21 +1,14 @@
 import moment from "moment";
-import { useGetStory, useGetUser } from "../../api/queries";
+import { useGetUser } from "../../api/queries";
 import { images } from "../../assets/images";
+import { StoryData } from "../../types/StoryData";
 import "./Story.scss";
 
-interface StoryProps {
-  id: number;
-}
-
-const Story = ({ id }: StoryProps) => {
-  const { data: story, isError, isLoading } = useGetStory(id);
+const Story = ({ story }: { story: StoryData["data"] }) => {
   const userName = story?.by;
+
   const { data: user, isLoading: isUserLoading } = useGetUser(userName);
   const formattedTime = moment.unix(story?.time).format("MM/DD/YYYY");
-
-  if (isError) {
-    return <div>Error while getting the story</div>;
-  }
 
   if (!story || story.deleted || story.dead) {
     return null;
@@ -23,7 +16,7 @@ const Story = ({ id }: StoryProps) => {
 
   return (
     <div className="story">
-      {!isLoading && !isUserLoading && (
+      {!isUserLoading && (
         <>
           <img
             src={images[Math.floor(Math.random() * images.length)]}

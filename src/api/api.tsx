@@ -18,10 +18,10 @@ export const getStory = async (id: number) => {
   return response.data;
 };
 
-export const getUser = async (id: number) => {
+export const getUser = async (username: string) => {
   const response = await axios({
     method: "get",
-    url: `https://hacker-news.firebaseio.com/v0/user/${id}.json`,
+    url: `https://hacker-news.firebaseio.com/v0/user/${username}.json`,
   });
 
   return response.data;
